@@ -19,7 +19,7 @@ jobs:
       - name: git clone
         run: git clone https://github.com/boostorg/boost
       - name: git checkout
-        run: git checkout tags/boost-${{inputs.version}}
+        run: git checkout tags/boost-${{github.event.inputs.version}}
       - name: git submodule init
         run: git submodule update --init --recursive
       - name: Bootstrap windows
