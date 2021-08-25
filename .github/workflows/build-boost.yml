@@ -39,14 +39,16 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: ./b2 -j2
         working-directory: boost
-      - name: delete .git
+      - name: delete .git windows
+        run: del -r .git
+      - name: delete .git unix
         run: rm -rf .git
         working-directory: boost
       - name: compress
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
       - uses: ncipollo/release-action@v1
         with:
-          draft: true
+          draft: false
           tag: ${{github.event.inputs.version}}
           artifacts: "boost-*.tar.gz"
           token: ${{ secrets.GITHUB_TOKEN }}
