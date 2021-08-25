@@ -53,6 +53,20 @@ jobs:
         working-directory: boost
       - name: compress
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: boost-${{matrix.os}}
+          path: "boost-*.tar.gz"
+
+  upload:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.0.10
+        with:
+          name: "boost*"
       - uses: ncipollo/release-action@v1
         with:
           draft: false
