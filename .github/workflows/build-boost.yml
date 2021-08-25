@@ -15,5 +15,22 @@ jobs:
 
     runs-on: ${{matrix.os}}
     steps:
-      - name: ls
-        run: ls
+      - run: tar
+      - name: git clone
+        run: git clone https://github.com/boostorg/boost
+      - name: git checkout
+        run: git checkout tags/boost-${{inputs.version}}
+      - name: git submodule init
+        run: git submodule update --init --recursive
+      - name: Bootstrap windows
+        if: matrix.os == 'windows-latest'
+        run: bootstrap.bat
+      - name: Bootstrap unix
+        if: matrix.os != 'windows-latest'
+        run: bootstrap.sh
+      - name: B2 windows
+        if: matrix.os == 'windows-latest'
+        run: b2.exe -j2
+      - name: B2 unix
+        if: matrix.os != 'windows-latest'
+        run: b2 -j2
