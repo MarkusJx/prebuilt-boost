@@ -41,6 +41,7 @@ jobs:
         working-directory: boost
       - name: delete .git windows
         run: del -r .git
+        working-directory: boost
       - name: delete .git unix
         run: rm -rf .git
         working-directory: boost
