@@ -29,7 +29,7 @@ jobs:
         working-directory: boost
       - name: Bootstrap unix
         if: matrix.os != 'windows-latest'
-        run: bootstrap.sh
+        run: ./bootstrap.sh
         working-directory: boost
       - name: B2 windows
         if: matrix.os == 'windows-latest'
@@ -37,7 +37,7 @@ jobs:
         working-directory: boost
       - name: B2 unix
         if: matrix.os != 'windows-latest'
-        run: b2 -j2
+        run: ./b2 -j2
         working-directory: boost
       - name: delete .git
         run: rm -rf .git
