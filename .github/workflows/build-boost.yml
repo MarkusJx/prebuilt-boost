@@ -15,22 +15,32 @@ jobs:
 
     runs-on: ${{matrix.os}}
     steps:
-      - run: tar
       - name: git clone
         run: git clone https://github.com/boostorg/boost
       - name: git checkout
         run: git checkout tags/boost-${{github.event.inputs.version}}
+        working-directory: boost
       - name: git submodule init
         run: git submodule update --init --recursive
+        working-directory: boost
       - name: Bootstrap windows
         if: matrix.os == 'windows-latest'
         run: bootstrap.bat
+        working-directory: boost
       - name: Bootstrap unix
         if: matrix.os != 'windows-latest'
         run: bootstrap.sh
+        working-directory: boost
       - name: B2 windows
         if: matrix.os == 'windows-latest'
         run: b2.exe -j2
+        working-directory: boost
       - name: B2 unix
         if: matrix.os != 'windows-latest'
         run: b2 -j2
+        working-directory: boost
+      - name: delete .git
+        run: rm -rf .git
+        working-directory: boost
+      - name: compress
+        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
