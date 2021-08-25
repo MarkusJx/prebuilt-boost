@@ -23,6 +23,8 @@ jobs:
       - name: git submodule init
         run: git submodule update --init --recursive
         working-directory: boost
+      
+      # Build steps
       - name: Bootstrap windows
         if: matrix.os == 'windows-latest'
         run: .\bootstrap.bat
@@ -39,11 +41,15 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: ./b2 -j2
         working-directory: boost
+      
+      # Upload steps
       - name: delete .git windows
         run: del -r .git
+        if: matrix.os == 'windows-latest'
         working-directory: boost
       - name: delete .git unix
         run: rm -rf .git
+        if: matrix.os != 'windows-latest'
         working-directory: boost
       - name: compress
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
