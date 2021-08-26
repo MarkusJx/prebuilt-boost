@@ -67,6 +67,11 @@ jobs:
     steps:
       - name: Download all Artifacts
         uses: actions/download-artifact@v2.0.10
+      - name: Move artifacts
+        shell: bash
+        run: |
+          mv */* .
+          find . -type d -empty -delete
       - uses: ncipollo/release-action@v1
         with:
           draft: false
