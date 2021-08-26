@@ -23,6 +23,15 @@ jobs:
       - name: git submodule init
         run: git submodule update --init --recursive
         working-directory: boost
+      - name: Delete .git windows
+        run: RD /S /Q .git
+        if: runner.os == 'Windows'
+        shell: cmd
+        working-directory: boost
+      - name: Delete .git unix
+        run: rm -rf .git
+        if: runner.os != 'Windows'
+        working-directory: boost
         
       # Setup cl.exe (windows only)
       - name: Setup VS Dev Environment
@@ -53,12 +62,12 @@ jobs:
       
       # Upload steps
       - name: Cleanup windows
-        run: RD /S /Q .git tmp
+        run: RD /S /Q tmp
         if: runner.os == 'Windows'
         shell: cmd
         working-directory: boost
       - name: Cleanup unix
-        run: rm -rf .git tmp
+        run: rm -rf tmp
         if: runner.os != 'Windows'
         working-directory: boost
       - name: Compress files
