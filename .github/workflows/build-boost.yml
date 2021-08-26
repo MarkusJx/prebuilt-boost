@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'windows-latest', 'macOs-latest']
+        os: ['ubuntu-20.04', 'windows-2019', 'macOs-10.15']
 
     runs-on: ${{matrix.os}}
     steps:
@@ -26,37 +26,38 @@ jobs:
       
       # Build steps
       - name: Bootstrap windows
-        if: matrix.os == 'windows-latest'
+        if: runner.os == 'Windows'
         run: .\bootstrap.bat
         working-directory: boost
       - name: Bootstrap unix
-        if: matrix.os != 'windows-latest'
+        if: runner.os != 'Windows'
         run: ./bootstrap.sh
         working-directory: boost
       - name: B2 windows
-        if: matrix.os == 'windows-latest'
+        if: runner.os == 'Windows'
         run: .\b2.exe -j2
         working-directory: boost
       - name: B2 unix
-        if: matrix.os != 'windows-latest'
+        if: runner.os != 'Windows'
         run: ./b2 -j2
         working-directory: boost
       
       # Upload steps
       - name: delete .git windows
         run: RD /S /Q .git
-        if: matrix.os == 'windows-latest'
+        if: runner.os == 'Windows'
         shell: cmd
         working-directory: boost
       - name: delete .git unix
         run: rm -rf .git
-        if: matrix.os != 'windows-latest'
+        if: runner.os != 'Windows'
         working-directory: boost
       - name: compress
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
         with:
+          retention-days: 1
           name: boost-${{matrix.os}}
           path: "boost-*.tar.gz"
 
@@ -64,10 +65,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - name: Download a Build Artifact
+      - name: Download all Artifacts
         uses: actions/download-artifact@v2.0.10
-        with:
-          name: "boost*"
       - uses: ncipollo/release-action@v1
         with:
           draft: false
