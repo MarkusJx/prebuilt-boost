@@ -27,7 +27,7 @@ jobs:
       # Build steps
       - name: Bootstrap windows
         if: runner.os == 'Windows'
-        run: .\bootstrap.bat
+        run: .\bootstrap.bat msvc
         working-directory: boost
       - name: Bootstrap unix
         if: runner.os != 'Windows'
@@ -35,7 +35,7 @@ jobs:
         working-directory: boost
       - name: Build windows
         if: runner.os == 'Windows'
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' link='static,shared' runtime-link='static,shared' variant='debug,release' -j2
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' link='static,shared' runtime-link='static,shared' variant='debug,release' address-model='32,64' -j4
         working-directory: boost
       - name: Build debug unix
         if: runner.os != 'Windows'
