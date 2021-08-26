@@ -44,8 +44,9 @@ jobs:
       
       # Upload steps
       - name: delete .git windows
-        run: del /r /f .git
+        run: RD /S /Q .git
         if: matrix.os == 'windows-latest'
+        shell: cmd
         working-directory: boost
       - name: delete .git unix
         run: rm -rf .git
