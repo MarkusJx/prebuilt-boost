@@ -33,26 +33,34 @@ jobs:
         if: runner.os != 'Windows'
         run: ./bootstrap.sh
         working-directory: boost
-      - name: B2 windows
+      - name: Build release windows
         if: runner.os == 'Windows'
-        run: .\b2.exe -j2
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' -j2
         working-directory: boost
-      - name: B2 unix
+      - name: Build release unix
         if: runner.os != 'Windows'
-        run: ./b2 -j2
+        run: ./b2 --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' -j2
+        working-directory: boost
+      - name: Build debug windows
+        if: runner.os == 'Windows'
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' -j2
+        working-directory: boost
+      - name: Build debug unix
+        if: runner.os != 'Windows'
+        run: ./b2 --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' -j2
         working-directory: boost
       
       # Upload steps
-      - name: delete .git windows
-        run: RD /S /Q .git
+      - name: Cleanup windows
+        run: RD /S /Q .git tmp
         if: runner.os == 'Windows'
         shell: cmd
         working-directory: boost
-      - name: delete .git unix
-        run: rm -rf .git
+      - name: Cleanup unix
+        run: rm -rf .git tmp
         if: runner.os != 'Windows'
         working-directory: boost
-      - name: compress
+      - name: Compress files
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
@@ -72,7 +80,8 @@ jobs:
         run: |
           mv */* .
           find . -type d -empty -delete
-      - uses: ncipollo/release-action@v1
+      - name: Create Release
+        uses: ncipollo/release-action@v1
         with:
           draft: false
           tag: ${{github.event.inputs.version}}
