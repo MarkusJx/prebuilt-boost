@@ -23,6 +23,11 @@ jobs:
       - name: git submodule init
         run: git submodule update --init --recursive
         working-directory: boost
+        
+      # Setup cl.exe (windows only)
+      - name: Setup VS Dev Environment
+        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+        if: runner.os == 'Windows'
       
       # Build steps
       - name: Bootstrap windows
