@@ -52,11 +52,13 @@ jobs:
         run: rm -rf .git
         if: matrix.os != 'windows-latest'
         working-directory: boost
+      - name: compress
+        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: boost-${{matrix.os}}
-          path: "boost"
+          path: "boost-*.tar.gz"
 
   upload:
     runs-on: ubuntu-latest
