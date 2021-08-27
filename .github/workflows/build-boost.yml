@@ -49,7 +49,7 @@ jobs:
         working-directory: boost
       - name: Build windows
         if: runner.os == 'Windows'
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' link='static,shared' runtime-link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
         working-directory: boost
       - name: Build debug unix
         if: runner.os != 'Windows'
