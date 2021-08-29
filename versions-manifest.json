@@ -1,0 +1,281 @@
+[{
+        "version": "1.71.0",
+        "files": [{
+                "filename": "boost-1.71.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.71.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.71.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.71.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.71.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.71.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.71.0/boost-1.71.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.72.0",
+        "files": [{
+                "filename": "boost-1.72.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.72.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.72.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.72.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.72.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.72.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.72.0/boost-1.72.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.73.0",
+        "files": [{
+                "filename": "boost-1.73.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.73.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.73.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.73.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.73.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.73.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.73.0/boost-1.73.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.74.0",
+        "files": [{
+                "filename": "boost-1.74.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.74.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.74.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.74.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.74.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.74.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.74.0/boost-1.74.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.75.0",
+        "files": [{
+                "filename": "boost-1.75.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.75.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.75.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.75.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.75.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.75.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.75.0/boost-1.75.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.76.0",
+        "files": [{
+                "filename": "boost-1.76.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.76.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.76.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.76.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.76.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.76.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.76.0/boost-1.76.0-macos-11.tar.gz"
+            }
+        ]
+    },
+    {
+        "version": "1.77.0",
+        "files": [{
+                "filename": "boost-1.77.0-ubuntu-18.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "18.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-ubuntu-18.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.77.0-ubuntu-20.04.tar.gz",
+                "platform": "linux",
+                "platform_version": "20.04",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-ubuntu-20.04.tar.gz"
+            },
+            {
+                "filename": "boost-1.77.0-windows-2016.tar.gz",
+                "platform": "windows",
+                "platform_version": "2016",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-windows-2016.tar.gz"
+            },
+            {
+                "filename": "boost-1.77.0-windows-2019.tar.gz",
+                "platform": "windows",
+                "platform_version": "2019",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-windows-2019.tar.gz"
+            },
+            {
+                "filename": "boost-1.77.0-macos-10.15.tar.gz",
+                "platform": "macos",
+                "platform_version": "10.15",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-macos-10.15.tar.gz"
+            },
+            {
+                "filename": "boost-1.77.0-macos-11.tar.gz",
+                "platform": "macos",
+                "platform_version": "11",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.77.0/boost-1.77.0-macos-11.tar.gz"
+            }
+        ]
+    }
+]
