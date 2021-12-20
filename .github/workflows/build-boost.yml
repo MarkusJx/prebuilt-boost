@@ -15,6 +15,7 @@ jobs:
           - os: ubuntu-20.04
           - os: ubuntu-18-04
           - os: windows-2016
+            COMPILER: msvc
           - os: windows-2019
             COMPILER: msvc
           - os: windows-2019
