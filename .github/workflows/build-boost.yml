@@ -99,7 +99,7 @@ jobs:
         if: runner.os != 'Windows'
         working-directory: boost
       - name: Compress files
-        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}.tar.gz boost
+        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
         with:
