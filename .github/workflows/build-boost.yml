@@ -11,7 +11,17 @@ jobs:
   build:
     strategy:
       matrix:
-        os: ['ubuntu-20.04', 'ubuntu-18.04', 'windows-2016', 'windows-2019', 'macos-10.15', 'macos-11']
+        include:
+          - os: ubuntu-20.04
+          - os: ubuntu-18-04
+          - os: windows-2016
+          - os: windows-2019
+            COMPILER: msvc
+          - os: windows-2019
+            COMPILER: mingw
+          - os: macos-10.15
+          - os: macos-11
+        #os: ['ubuntu-20.04', 'ubuntu-18.04', 'windows-2016', 'windows-2019', 'macos-10.15', 'macos-11']
 
     runs-on: ${{matrix.os}}
     steps:
@@ -36,13 +46,21 @@ jobs:
       # Setup cl.exe (windows only)
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v3
-        if: runner.os == 'Windows'
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
+        
+      # Setup MinGW (windows only)
+      - name: Setup MinGW
+        uses: egor-tensin/setup-mingw@v2
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
       
       # Build steps
       - name: Bootstrap windows
-        if: runner.os == 'Windows'
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         run: .\bootstrap.bat msvc
         working-directory: boost
+      - name: Bootstrap windows MinGW
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
+        run: .\bootstrap.bat mingw
       - name: Bootstrap unix
         if: runner.os != 'Windows'
         run: ./bootstrap.sh
