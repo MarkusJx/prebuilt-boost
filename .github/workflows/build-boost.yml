@@ -72,8 +72,8 @@ jobs:
         working-directory: boost
       - name: Build windows msvc
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
-        #run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' -j4 msvc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
+        #run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' -j4 msvc stage
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
