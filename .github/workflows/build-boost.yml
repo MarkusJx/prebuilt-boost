@@ -12,20 +12,46 @@ jobs:
     strategy:
       matrix:
         include:
+          # Ubuntu
           - os: ubuntu-20.04
             COMPILER: gcc
+            LINK: 'static+shared'
           - os: ubuntu-18.04
             COMPILER: gcc
-          - os: windows-2016
-            COMPILER: msvc
+            LINK: 'static+shared'
+          # Windows Server 2019
           - os: windows-2019
             COMPILER: msvc
+            LINK: 'static'
+          - os: windows-2019
+            COMPILER: msvc
+            LINK: 'shared'
           - os: windows-2019
             COMPILER: mingw
+            LINK: 'static'
+          - os: windows-2019
+            COMPILER: mingw
+            LINK: 'shared'
+          # Windows Server 2022
+          - os: windows-2022
+            COMPILER: msvc
+            LINK: 'static'
+          - os: windows-2022
+            COMPILER: msvc
+            LINK: 'shared'
+          - os: windows-2022
+            COMPILER: mingw
+            LINK: 'static'
+          - os: windows-2022
+            COMPILER: mingw
+            LINK: 'shared'
+          # MacOs
           - os: macos-10.15
             COMPILER: clang
+            LINK: 'static+shared'
           - os: macos-11
             COMPILER: clang
+            LINK: 'static+shared'
 
     runs-on: ${{matrix.os}}
     steps:
@@ -73,7 +99,7 @@ jobs:
       - name: Build windows msvc
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         #run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' -j4 msvc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' link=${{matrix.LINK}} -j4 msvc stage
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
@@ -99,7 +125,7 @@ jobs:
         if: runner.os != 'Windows'
         working-directory: boost
       - name: Compress files
-        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}.tar.gz boost
+        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
         with:
