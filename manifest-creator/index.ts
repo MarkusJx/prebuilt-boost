@@ -53,6 +53,7 @@ async function main(): Promise<void> {
                 platform: split[2].replace('ubuntu', 'linux') as Platform,
                 platform_version: split[3],
                 toolset: split[4],
+                link: split.length >= 6 && split[5] || undefined,
                 download_url: d.browser_download_url
             };
         });
