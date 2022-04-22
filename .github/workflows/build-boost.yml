@@ -148,13 +148,13 @@ jobs:
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'arm' }}
         run: |
           echo "using gcc : arm : arm-linux-gnueabihf-g++ ;" > user-config.jam
-          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' toolset='gcc-arm' --user-config=./user-config.jam -j2
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' toolset='gcc-arm' --without-python --user-config=./user-config.jam -j2
         working-directory: boost
       - name: Build release ubuntu arm
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'arm' }}
         run: |
           echo "using gcc : arm : arm-linux-gnueabihf-g++ ;" > user-config.jam
-          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' toolset='gcc-arm' --user-config=./user-config.jam -j2
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' toolset='gcc-arm' --without-python --user-config=./user-config.jam -j2
         working-directory: boost
       
       # Upload steps
@@ -179,7 +179,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     needs: [build]
-    if: github.ref_name == 'main'
+    #if: github.ref_name == 'main'
     steps:
       - name: Download all Artifacts
         uses: actions/download-artifact@v2.0.10

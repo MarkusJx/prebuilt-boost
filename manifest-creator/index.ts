@@ -3,12 +3,18 @@ import fs from "fs";
 import path from "path";
 
 type Platform = "linux" | "windows" | "macos";
+type PlatformVersion = "18.04" | "20.04" | "2019" | "2022" | "10.15" | "11";
+type Toolset = "gcc" | "msvc" | "mingw" | "clang";
+type Arch = "x86" | "arm";
+type Link = "static" | "shared" | "static+shared";
 
 interface File {
     filename: string;
     platform: Platform;
-    platform_version: string;
-    toolset?: string;
+    platform_version: PlatformVersion;
+    toolset?: Toolset;
+    arch?: Arch;
+    link?: Link;
     download_url: string;
 }
 
@@ -45,15 +51,16 @@ async function main(): Promise<void> {
             release_id: r.id
         });
 
-        const files = assets.data.map(d => {
+        const files: File[] = assets.data.map<File>(d => {
             const split = d.name.substring(0, d.name.indexOf('.tar.gz')).split('-');
 
             return {
                 filename: d.name,
                 platform: split[2].replace('ubuntu', 'linux') as Platform,
-                platform_version: split[3],
-                toolset: split[4],
-                link: split.length >= 6 && split[5] || undefined,
+                platform_version: split[3] as PlatformVersion,
+                toolset: split[4] as Toolset,
+                link: split.length >= 6 && split[5] as Link || undefined,
+                arch: split.length >= 7 && split[6] as Arch || undefined,
                 download_url: d.browser_download_url
             };
         });
