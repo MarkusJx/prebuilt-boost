@@ -105,7 +105,7 @@ jobs:
 
       # Install ARM Toolchain on ubuntu
       - name: Install ARM Toolchain
-        if: ${{ maktrix.ARCH == 'arm64' }}
+        if: ${{ matrix.ARCH == 'arm64' }}
         run: |
           apt-get update
           apt-get install g++-arm-linux-gnueabihf -y
