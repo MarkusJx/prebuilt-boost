@@ -107,8 +107,8 @@ jobs:
       - name: Install ARM Toolchain
         if: ${{ matrix.ARCH == 'arm' }}
         run: |
-          apt-get update
-          apt-get install g++-arm-linux-gnueabihf -y
+          sudo apt-get update
+          sudo apt-get install g++-arm-linux-gnueabihf -y
       
       # Build steps
       - name: Bootstrap windows
