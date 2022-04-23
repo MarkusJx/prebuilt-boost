@@ -24,11 +24,7 @@ jobs:
           - os: ubuntu-20.04
             COMPILER: gcc
             LINK: 'static+shared'
-            ARCH: arm
-          - os: ubuntu-18.04
-            COMPILER: gcc
-            LINK: 'static+shared'
-            ARCH: arm
+            ARCH: aarch64
           # Windows Server 2019
           - os: windows-2019
             COMPILER: msvc
@@ -105,10 +101,10 @@ jobs:
 
       # Install ARM Toolchain on ubuntu
       - name: Install ARM Toolchain
-        if: ${{ matrix.ARCH == 'arm' }}
+        if: ${{ matrix.ARCH == 'aarch64' }}
         run: |
           sudo apt-get update
-          sudo apt-get install g++-arm-linux-gnueabihf -y
+          sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
       
       # Build steps
       - name: Bootstrap windows
@@ -145,16 +141,18 @@ jobs:
         run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' -j2
         working-directory: boost
       - name: Build debug ubuntu arm
-        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'arm' }}
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'aarch64' }}
         run: |
-          echo "using gcc : arm : arm-linux-gnueabihf-g++ ;" > user-config.jam
-          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' toolset='gcc-arm' --without-python --user-config=./user-config.jam -j2
+          echo "using gcc : arm : aarch64-linux-gnu-g++ ;" > user-config.jam
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' \
+          toolset='gcc-arm' --without-python address-model=64 --user-config=./user-config.jam -j2
         working-directory: boost
       - name: Build release ubuntu arm
-        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'arm' }}
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'aarch64' }}
         run: |
-          echo "using gcc : arm : arm-linux-gnueabihf-g++ ;" > user-config.jam
-          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' toolset='gcc-arm' --without-python --user-config=./user-config.jam -j2
+          echo "using gcc : arm : aarch64-linux-gnu-g++ ;" > user-config.jam
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' \
+          toolset='gcc-arm' --without-python address-model=64 --user-config=./user-config.jam -j2
         working-directory: boost
       
       # Upload steps

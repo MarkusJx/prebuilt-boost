@@ -5,7 +5,7 @@ import path from "path";
 type Platform = "linux" | "windows" | "macos";
 type PlatformVersion = "18.04" | "20.04" | "2019" | "2022" | "10.15" | "11";
 type Toolset = "gcc" | "msvc" | "mingw" | "clang";
-type Arch = "x86" | "arm";
+type Arch = "x86" | "aarch64";
 type Link = "static" | "shared" | "static+shared";
 
 interface File {
