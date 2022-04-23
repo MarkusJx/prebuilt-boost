@@ -16,42 +16,58 @@ jobs:
           - os: ubuntu-20.04
             COMPILER: gcc
             LINK: 'static+shared'
+            ARCH: x86
           - os: ubuntu-18.04
             COMPILER: gcc
             LINK: 'static+shared'
+            ARCH: x86
+          - os: ubuntu-20.04
+            COMPILER: gcc
+            LINK: 'static+shared'
+            ARCH: aarch64
           # Windows Server 2019
           - os: windows-2019
             COMPILER: msvc
             LINK: 'static'
+            ARCH: x86
           - os: windows-2019
             COMPILER: msvc
             LINK: 'shared'
+            ARCH: x86
           - os: windows-2019
             COMPILER: mingw
             LINK: 'static'
+            ARCH: x86
           - os: windows-2019
             COMPILER: mingw
             LINK: 'shared'
+            ARCH: x86
           # Windows Server 2022
           - os: windows-2022
             COMPILER: msvc
             LINK: 'static'
+            ARCH: x86
           - os: windows-2022
             COMPILER: msvc
             LINK: 'shared'
+            ARCH: x86
           - os: windows-2022
             COMPILER: mingw
             LINK: 'static'
+            ARCH: x86
           - os: windows-2022
             COMPILER: mingw
             LINK: 'shared'
+            ARCH: x86
           # MacOs
           - os: macos-10.15
             COMPILER: clang
             LINK: 'static+shared'
+            ARCH: x86
           - os: macos-11
             COMPILER: clang
             LINK: 'static+shared'
+            ARCH: x86
 
     runs-on: ${{matrix.os}}
     steps:
@@ -82,6 +98,13 @@ jobs:
       - name: Setup MinGW
         uses: egor-tensin/setup-mingw@v2
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
+
+      # Install ARM Toolchain on ubuntu
+      - name: Install ARM Toolchain
+        if: ${{ matrix.ARCH == 'aarch64' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
       
       # Build steps
       - name: Bootstrap windows
@@ -109,13 +132,27 @@ jobs:
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
         run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc stage
         working-directory: boost
-      - name: Build debug unix
-        if: runner.os != 'Windows'
+      - name: Build debug unix x86
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
         run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' -j2
         working-directory: boost
-      - name: Build release unix
-        if: runner.os != 'Windows'
+      - name: Build release unix x86
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
         run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' -j2
+        working-directory: boost
+      - name: Build debug ubuntu arm
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'aarch64' }}
+        run: |
+          echo "using gcc : aarch64 : aarch64-linux-gnu-g++ ;" > user-config.jam
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' \
+          toolset='gcc-aarch64' --without-python address-model=64 --user-config=./user-config.jam -j2
+        working-directory: boost
+      - name: Build release ubuntu arm
+        if: ${{ runner.os != 'Windows' && matrix.ARCH == 'aarch64' }}
+        run: |
+          echo "using gcc : aarch64 : aarch64-linux-gnu-g++ ;" > user-config.jam
+          ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' \
+          toolset='gcc-aarch64' --without-python address-model=64 --user-config=./user-config.jam -j2
         working-directory: boost
       
       # Upload steps
@@ -129,7 +166,7 @@ jobs:
         if: runner.os != 'Windows'
         working-directory: boost
       - name: Compress files
-        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}.tar.gz boost
+        run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}.tar.gz boost
       - name: Upload boost artifact
         uses: actions/upload-artifact@v2.2.4
         with:
@@ -140,6 +177,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     needs: [build]
+    #if: github.ref_name == 'main'
     steps:
       - name: Download all Artifacts
         uses: actions/download-artifact@v2.0.10
