@@ -159,7 +159,7 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
         working-directory: boost
         shell: bash
-        run: cp include/boost-*/boost include/boost
+        run: cp -r include/boost-*/boost include/boost
       
       # Upload steps
       - name: Cleanup windows
