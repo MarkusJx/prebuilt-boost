@@ -155,13 +155,11 @@ jobs:
           toolset='gcc-aarch64' --without-python address-model=64 --user-config=./user-config.jam -j2
         working-directory: boost
         
-      - name: Move include directories
+      - name: Copy include directories
         if: ${{ runner.os == 'Windows' }}
         working-directory: boost
         shell: bash
-        run: |
-          mv include/boost-*/boost include/boost
-          rm -rf include/boost-*
+        run: cp include/boost-*/boost include/boost
       
       # Upload steps
       - name: Cleanup windows
