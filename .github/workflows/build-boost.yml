@@ -131,7 +131,7 @@ jobs:
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         run: |
-          VAR="using python : 3.4 : $Python_ROOT_DIR ;"
+          VAR="using python : 3.7 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.8
         uses: actions/setup-python@v4
