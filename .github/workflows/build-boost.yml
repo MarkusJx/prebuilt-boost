@@ -196,7 +196,7 @@ jobs:
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc python='3.7,3.8,3.9,3.10,3.11' stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc stage
         working-directory: boost
       - name: Build debug unix x86
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
