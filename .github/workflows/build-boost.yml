@@ -111,33 +111,11 @@ jobs:
           sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
 
       # Install python
-      - name: Setup python 2.7
-        uses: actions/setup-python@v4
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        with:
-          python-version: '2.7.17'
-      - name: Add python 2.7 to user-config
-        working-directory: boost/tools/build/src
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        run: |
-          VAR="using python : 2.7 : $Python_ROOT_DIR ;"
-          echo ${VAR//\\/\/} >> user-config.jam
-      - name: Setup python 3.6
-        uses: actions/setup-python@v4
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        with:
-          python-version: '3.6.8'
-      - name: Add python 3.6 to user-config
-        working-directory: boost/tools/build/src
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        run: |
-          VAR="using python : 3.6 : $Python_ROOT_DIR ;"
-          echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.7
         uses: actions/setup-python@v4
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
-          python-version: '3.7.9'
+          python-version: '3.7'
       - name: Add python 3.7 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
@@ -148,7 +126,7 @@ jobs:
         uses: actions/setup-python@v4
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
-          python-version: '3.8.10'
+          python-version: '3.8'
       - name: Add python 3.8 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
@@ -159,7 +137,7 @@ jobs:
         uses: actions/setup-python@v4
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
-          python-version: '3.9.13'
+          python-version: '3.9'
       - name: Add python 3.9 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
@@ -170,7 +148,7 @@ jobs:
         uses: actions/setup-python@v4
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
-          python-version: '3.10.8'
+          python-version: '3.10'
       - name: Add python 3.10 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
@@ -181,7 +159,7 @@ jobs:
         uses: actions/setup-python@v4
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
-          python-version: '3.11.0'
+          python-version: '3.11'
       - name: Add python 3.10 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
@@ -205,7 +183,7 @@ jobs:
       - name: Build windows msvc (static)
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' }}
         #run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' link=${{matrix.LINK}} python='3.6,3.7,3.8,3.9,3.10,3.11' -j4 msvc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' link=${{matrix.LINK}} python='3.7,3.8,3.9,3.10,3.11' -j4 msvc stage
         working-directory: boost
       - name: Build windows msvc (shared) without python
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'shared' }}
@@ -213,15 +191,15 @@ jobs:
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc python='3.6,3.7,3.8,3.9,3.10,3.11' stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc python='3.7,3.8,3.9,3.10,3.11' stage
         working-directory: boost
       - name: Build debug unix x86
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
-        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' python='3.6,3.7,3.8,3.9,3.10,3.11' -j2
+        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' python='3.7,3.8,3.9,3.10,3.11' -j2
         working-directory: boost
       - name: Build release unix x86
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
-        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' python='3.6,3.7,3.8,3.9,3.10,3.11' -j2
+        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' python='3.7,3.8,3.9,3.10,3.11' -j2
         working-directory: boost
       - name: Build debug ubuntu arm
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'aarch64' }}
