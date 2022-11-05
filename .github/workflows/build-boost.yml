@@ -119,6 +119,7 @@ jobs:
       - name: Add python 3.7 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
+        shell: bash
         run: |
           VAR="using python : 3.7 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
@@ -130,6 +131,7 @@ jobs:
       - name: Add python 3.8 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
+        shell: bash
         run: |
           VAR="using python : 3.8 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
@@ -141,6 +143,7 @@ jobs:
       - name: Add python 3.9 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
+        shell: bash
         run: |
           VAR="using python : 3.9 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
@@ -152,6 +155,7 @@ jobs:
       - name: Add python 3.10 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
+        shell: bash
         run: |
           VAR="using python : 3.10 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
@@ -163,6 +167,7 @@ jobs:
       - name: Add python 3.10 to user-config
         working-directory: boost/tools/build/src
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
+        shell: bash
         run: |
           VAR="using python : 3.11 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
