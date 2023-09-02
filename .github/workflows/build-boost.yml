@@ -18,10 +18,6 @@ jobs:
       matrix:
         include:
           # Ubuntu
-          - os: ubuntu-18.04
-            COMPILER: gcc
-            LINK: 'static+shared'
-            ARCH: x86
           - os: ubuntu-20.04
             COMPILER: gcc
             LINK: 'static+shared'
@@ -69,15 +65,15 @@ jobs:
             LINK: 'shared'
             ARCH: x86
           # MacOs
-          - os: macos-10.15
-            COMPILER: clang
-            LINK: 'static+shared'
-            ARCH: x86
           - os: macos-11
             COMPILER: clang
             LINK: 'static+shared'
             ARCH: x86
           - os: macos-12
+            COMPILER: clang
+            LINK: 'static+shared'
+            ARCH: x86
+          - os: macos-13
             COMPILER: clang
             LINK: 'static+shared'
             ARCH: x86
