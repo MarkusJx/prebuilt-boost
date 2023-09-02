@@ -1,16 +1,12 @@
 {
     "compilerOptions": {
-      "module": "commonjs",
-      "noImplicitAny": false,
-      "removeComments": true,
-      "preserveConstEnums": true,
-      "sourceMap": false,
-      "esModuleInterop": true
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "esModuleInterop": true
     },
-    "include": [
-        "."
-    ],
-    "exclude": [
-        "node_modules"
-    ]
-  }
+    "include": ["."],
+    "exclude": ["node_modules"]
+}
