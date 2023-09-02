@@ -100,7 +100,7 @@ jobs:
         
       # Setup cl.exe (windows only)
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+        uses: seanmiddleditch/gha-setup-vsdevenv@v4
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         
       # Setup MinGW (windows only)
@@ -245,7 +245,7 @@ jobs:
       - name: Compress files
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}.tar.gz boost
       - name: Upload boost artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
           retention-days: 1
           name: boost-${{matrix.os}}-${{matrix.COMPILER}}
