@@ -43,10 +43,10 @@ jobs:
             COMPILER: mingw
             LINK: 'static'
             ARCH: x86
-          - os: windows-2019
-            COMPILER: mingw
-            LINK: 'shared'
-            ARCH: x86
+          #- os: windows-2019
+          #  COMPILER: mingw
+          #  LINK: 'shared'
+          #  ARCH: x86
           # Windows Server 2022
           - os: windows-2022
             COMPILER: msvc
@@ -60,10 +60,10 @@ jobs:
             COMPILER: mingw
             LINK: 'static'
             ARCH: x86
-          - os: windows-2022
-            COMPILER: mingw
-            LINK: 'shared'
-            ARCH: x86
+          #- os: windows-2022
+          #  COMPILER: mingw
+          #  LINK: 'shared'
+          #  ARCH: x86
           # MacOs
           - os: macos-11
             COMPILER: clang
@@ -201,7 +201,7 @@ jobs:
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
-        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' -j4 toolset=gcc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' runtime-link='static,shared' address-model='32,64' --hash -j4 toolset=gcc stage
         working-directory: boost
       - name: Build debug unix x86
         if: ${{ runner.os != 'Windows' && matrix.ARCH == 'x86' }}
