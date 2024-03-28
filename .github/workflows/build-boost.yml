@@ -77,6 +77,10 @@ jobs:
             COMPILER: clang
             LINK: 'static+shared'
             ARCH: x86
+          - os: macos-14
+            COMPILER: clang
+            LINK: 'static+shared'
+            ARCH: arm64
 
     runs-on: ${{matrix.os}}
     steps:
