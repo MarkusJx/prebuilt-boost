@@ -104,7 +104,7 @@ jobs:
         
       # Setup cl.exe (windows only)
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+        uses: compnerd/gha-setup-vsdevenv@v6
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         
       # Setup MinGW (windows only)
@@ -121,7 +121,7 @@ jobs:
 
       # Install python
       - name: Setup python 3.7
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' }}
         with:
           python-version: '3.7'
@@ -133,7 +133,7 @@ jobs:
           VAR="using python : 3.7 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.8
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14'  }}
         with:
           python-version: '3.8'
@@ -145,7 +145,7 @@ jobs:
           VAR="using python : 3.8 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.9
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14'  }}
         with:
           python-version: '3.9'
@@ -157,7 +157,7 @@ jobs:
           VAR="using python : 3.9 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14'  }}
         with:
           python-version: '3.10'
@@ -169,7 +169,7 @@ jobs:
           VAR="using python : 3.10 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.11'
@@ -181,7 +181,7 @@ jobs:
           VAR="using python : 3.11 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.12
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.12'
@@ -269,7 +269,7 @@ jobs:
       - name: Compress files
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}.tar.gz boost
       - name: Upload boost artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           retention-days: 1
           name: boost-${{matrix.os}}-${{matrix.COMPILER}}
@@ -282,7 +282,7 @@ jobs:
     #if: github.ref_name == 'main'
     steps:
       - name: Download all Artifacts
-        uses: actions/download-artifact@v2.0.10
+        uses: actions/download-artifact@v4
       - name: Move artifacts
         shell: bash
         run: |
