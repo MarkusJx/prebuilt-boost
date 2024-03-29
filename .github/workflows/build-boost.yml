@@ -272,7 +272,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           retention-days: 1
-          name: boost-${{matrix.os}}-${{matrix.COMPILER}}
+          name: boost-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}
           path: "boost-*.tar.gz"
 
   upload:
