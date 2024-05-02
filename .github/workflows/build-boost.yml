@@ -234,11 +234,11 @@ jobs:
         working-directory: boost
       - name: Build debug macos arm64
         if: ${{ runner.os == 'macOS' && matrix.ARCH == 'aarch64' }}
-        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' python='3.11,3.12' -j2
+        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' python='3.12' -j2
         working-directory: boost
       - name: Build release macos arm64
         if: ${{ runner.os == 'macOS' && matrix.ARCH == 'aarch64' }}
-        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' python='3.11,3.12' -j2
+        run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' python='3.12' -j2
         working-directory: boost
       - name: Build debug ubuntu arm
         if: ${{ runner.os == 'Ubuntu' && matrix.ARCH == 'aarch64' }}
