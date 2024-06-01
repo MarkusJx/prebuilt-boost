@@ -10,7 +10,12 @@ on:
         description: 'Release'
         type: boolean
         required: false
-        default: 'true'
+        default: true
+      delete-previous:
+        description: 'Delete previous release'
+        type: boolean
+        required: false
+        default: true
 
 jobs:
   build:
@@ -281,6 +286,12 @@ jobs:
     if: github.event.inputs.release == 'true'
     #if: github.ref_name == 'main'
     steps:
+      - name: Delete previous release
+        uses: dev-drprasad/delete-tag-and-release@v1.1
+        if: github.event.inputs.delete-previous == 'true'
+        with:
+          tag_name: ${{github.event.inputs.version}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Download all Artifacts
         uses: actions/download-artifact@v4
       - name: Move artifacts
