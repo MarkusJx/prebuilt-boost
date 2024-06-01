@@ -119,7 +119,7 @@ jobs:
 
       # Install ARM Toolchain on ubuntu
       - name: Install ARM Toolchain
-        if: ${{ runner.os == 'Ubuntu' && matrix.ARCH == 'aarch64' }}
+        if: ${{ runner.os == 'Linux' && matrix.ARCH == 'aarch64' }}
         run: |
           sudo apt-get update
           sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
@@ -241,14 +241,14 @@ jobs:
         run: ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' python='3.11,3.12' -j2
         working-directory: boost
       - name: Build debug ubuntu arm
-        if: ${{ runner.os == 'Ubuntu' && matrix.ARCH == 'aarch64' }}
+        if: ${{ runner.os == 'Linux' && matrix.ARCH == 'aarch64' }}
         run: |
           echo "using gcc : aarch64 : aarch64-linux-gnu-g++ ;" > user-config.jam
           ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='debug' \
           toolset='gcc-aarch64' --without-python address-model=64 --user-config=./user-config.jam -j2
         working-directory: boost
       - name: Build release ubuntu arm
-        if: ${{ runner.os == 'Ubuntu' && matrix.ARCH == 'aarch64' }}
+        if: ${{ runner.os == 'Linux' && matrix.ARCH == 'aarch64' }}
         run: |
           echo "using gcc : aarch64 : aarch64-linux-gnu-g++ ;" > user-config.jam
           ./b2 install --build-dir='tmp' --prefix='.' --layout='tagged' link='static,shared' runtime-link='static,shared' variant='release' \
