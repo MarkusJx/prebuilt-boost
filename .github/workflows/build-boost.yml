@@ -70,10 +70,6 @@ jobs:
           #  LINK: 'shared'
           #  ARCH: x86
           # MacOs
-          - os: macos-11
-            COMPILER: clang
-            LINK: 'static+shared'
-            ARCH: x86
           - os: macos-12
             COMPILER: clang
             LINK: 'static+shared'
