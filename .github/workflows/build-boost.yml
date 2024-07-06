@@ -44,10 +44,10 @@ jobs:
             COMPILER: msvc
             LINK: 'shared'
             ARCH: x86
-          - os: windows-2019
-            COMPILER: mingw
-            LINK: 'static'
-            ARCH: x86
+          #- os: windows-2019
+          #  COMPILER: mingw
+          #  LINK: 'static'
+          #  ARCH: x86
           #- os: windows-2019
           #  COMPILER: mingw
           #  LINK: 'shared'
@@ -61,19 +61,15 @@ jobs:
             COMPILER: msvc
             LINK: 'shared'
             ARCH: x86
-          - os: windows-2022
-            COMPILER: mingw
-            LINK: 'static'
-            ARCH: x86
+          #- os: windows-2022
+          #  COMPILER: mingw
+          #  LINK: 'static'
+          #  ARCH: x86
           #- os: windows-2022
           #  COMPILER: mingw
           #  LINK: 'shared'
           #  ARCH: x86
           # MacOs
-          - os: macos-11
-            COMPILER: clang
-            LINK: 'static+shared'
-            ARCH: x86
           - os: macos-12
             COMPILER: clang
             LINK: 'static+shared'
