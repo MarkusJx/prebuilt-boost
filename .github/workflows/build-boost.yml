@@ -69,24 +69,24 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-      - name: git clone
+      - name: Clone
         run: git clone https://github.com/boostorg/boost
 
-      - name: git checkout
+      - name: Checkout repository
         run: git checkout tags/boost-${{ github.event.inputs.version }}
         working-directory: boost
 
-      - name: git submodule init
+      - name: Init Submodules
         run: git submodule update --init --recursive
         working-directory: boost
 
-      - name: Delete .git windows
+      - name: Delete .git Windows
         run: RD /S /Q .git
         if: runner.os == 'Windows'
         shell: cmd
         working-directory: boost
 
-      - name: Delete .git unix
+      - name: Delete .git Unix
         run: rm -rf .git
         if: runner.os != 'Windows'
         working-directory: boost
@@ -129,17 +129,17 @@ jobs:
           VAR="using python : 3.8 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
 
-      - name: Bootstrap windows
+      - name: Bootstrap Windows
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         run: .\bootstrap.bat msvc
         working-directory: boost
 
-      - name: Bootstrap unix
+      - name: Bootstrap Unix
         if: runner.os != 'Windows'
         run: ./bootstrap.sh
         working-directory: boost
 
-      - name: Build windows msvc (static)
+      - name: Build Windows MSVC (static)
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' }}
         run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' link=${{ matrix.LINK }} python='3.7,3.8,3.9,3.10,3.11,3.12' -j4 msvc stage
         working-directory: boost
@@ -147,7 +147,7 @@ jobs:
       - name: Compress files
         run: tar -czf boost-${{ github.event.inputs.version }}-${{ matrix.os }}-${{ matrix.COMPILER }}-${{ matrix.LINK }}-${{ matrix.ARCH }}.tar.gz boost
 
-      - name: Upload boost artifact
+      - name: Upload Boost artifact
         uses: actions/upload-artifact@v4
         with:
           retention-days: 1
