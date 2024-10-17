@@ -22,7 +22,7 @@
         "@octokit/core": "^6.1.2"
     },
     "devDependencies": {
-        "@types/node": "^20.13.0",
+        "@types/node": "^22.7.6",
         "prettier": "^3.0.3",
         "tsx": "^4.11.0",
         "typescript": "^5.4.5"
