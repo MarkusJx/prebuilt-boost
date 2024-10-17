@@ -1,6 +1,7 @@
-# prebuilt-boost [![Build Boost](https://github.com/MarkusJx/prebuilt-boost/actions/workflows/build-boost.yml/badge.svg?branch=main)](https://github.com/MarkusJx/prebuilt-boost/actions/workflows/build-boost.yml)
+# Prebuilt Boost
+[![Build Boost](https://github.com/MarkusJx/prebuilt-boost/actions/workflows/build-boost.yml/badge.svg?branch=main)](https://github.com/MarkusJx/prebuilt-boost/actions/workflows/build-boost.yml)
 
-Prebuilt boost versions for github actions. Ths is mainly used for
-[``@MarkusJx/install-boost``](https://github.com/MarkusJx/install-boost),
-but you could use these prebuilt binaries anywhere, if you want to.
-The supported boost versions are listed in ``versions-manifest.json``.
+Prebuilt Boost versions for GitHub Actions. This repository is primarily used by [`@MarkusJx/install-boost`](https://github.com/MarkusJx/install-boost), but you are welcome to use the prebuilt binaries in any project.
+
+### Supported Boost Versions
+The supported Boost versions are listed in the `versions-manifest.json` file.
