@@ -81,7 +81,7 @@ jobs:
           - os: macos-15
             COMPILER: clang
             LINK: 'static+shared'
-            ARCH: x86
+            ARCH: aarch64
 
 
     runs-on: ${{matrix.os}}
