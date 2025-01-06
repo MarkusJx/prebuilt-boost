@@ -1691,15 +1691,6 @@
         "version": "1.86.0",
         "files": [
             {
-                "filename": "boost-1.86.0-macos-12-clang-static+shared-x86.tar.gz",
-                "platform": "macos",
-                "platform_version": "12",
-                "toolset": "clang",
-                "link": "static+shared",
-                "arch": "x86",
-                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.86.0/boost-1.86.0-macos-12-clang-static%2Bshared-x86.tar.gz"
-            },
-            {
                 "filename": "boost-1.86.0-macos-13-clang-static+shared-x86.tar.gz",
                 "platform": "macos",
                 "platform_version": "13",
@@ -1716,6 +1707,15 @@
                 "link": "static+shared",
                 "arch": "aarch64",
                 "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.86.0/boost-1.86.0-macos-14-clang-static%2Bshared-aarch64.tar.gz"
+            },
+            {
+                "filename": "boost-1.86.0-macos-15-clang-static+shared-aarch64.tar.gz",
+                "platform": "macos",
+                "platform_version": "15",
+                "toolset": "clang",
+                "link": "static+shared",
+                "arch": "aarch64",
+                "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.86.0/boost-1.86.0-macos-15-clang-static%2Bshared-aarch64.tar.gz"
             },
             {
                 "filename": "boost-1.86.0-ubuntu-20.04-gcc-static+shared-aarch64.tar.gz",
