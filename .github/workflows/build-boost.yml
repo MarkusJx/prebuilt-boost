@@ -35,12 +35,12 @@ jobs:
             COMPILER: gcc
             LINK: 'static+shared'
             ARCH: x86
-          # Windows Server 2019
-          - os: windows-2019
+          # Windows Server 2025
+          - os: windows-2025
             COMPILER: msvc
             LINK: 'static'
             ARCH: x86
-          - os: windows-2019
+          - os: windows-2025
             COMPILER: msvc
             LINK: 'shared'
             ARCH: x86
