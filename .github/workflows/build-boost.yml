@@ -194,18 +194,6 @@ jobs:
         run: |
             VAR="using python : 3.13 : $Python_ROOT_DIR ;"
             echo ${VAR//\\/\/} >> user-config.jam
-      - name: Setup python 3.14
-        uses: actions/setup-python@v5
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        with:
-          python-version: '3.14'
-      - name: Add python 3.14 to user-config
-        working-directory: boost/tools/build/src
-        if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
-        shell: bash
-        run: |
-            VAR="using python : 3.14 : $Python_ROOT_DIR ;"
-            echo ${VAR//\\/\/} >> user-config.jam
 
       # Build steps
       - name: Bootstrap windows
