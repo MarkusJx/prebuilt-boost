@@ -23,11 +23,11 @@ jobs:
       matrix:
         include:
           # Ubuntu
-          - os: ubuntu-20.04
+          - os: ubuntu-24.04
             COMPILER: gcc
             LINK: 'static+shared'
             ARCH: x86
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             COMPILER: gcc
             LINK: 'static+shared'
             ARCH: aarch64
