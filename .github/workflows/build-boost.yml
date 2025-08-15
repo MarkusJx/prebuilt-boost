@@ -218,13 +218,22 @@ jobs:
         run: ./bootstrap.sh
         working-directory: boost
       - name: Build windows msvc (static)
-        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' }}
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' && matrix.os != 'windows-11-arm' }}
         #run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
         run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='32,64' link=${{matrix.LINK}} python='3.8,3.9,3.10,3.11,3.12,3.13' -j4 msvc stage
         working-directory: boost
       - name: Build windows msvc (shared) without python
-        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'shared' }}
+        if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' && matrix.LINK == 'shared' && matrix.os != 'windows-11-arm' }}
         run: .\b2.exe install --build-dir='tmp' --prefix='.' --without-python variant='release,debug' address-model='32,64' link=${{matrix.LINK}} -j4 msvc stage
+        working-directory: boost
+      - name: Build windows arm (static)
+        if: ${{ matrix.os == 'windows-11-arm' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' }}
+        #run: .\b2.exe install --build-dir='tmp' --prefix='.' runtime-link='static,shared' link='static,shared' variant='release,debug' address-model='32,64' -j4 msvc stage
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' variant='release,debug' address-model='64' link=${{matrix.LINK}} python='3.11,3.12,3.13' -j4 msvc stage
+        working-directory: boost
+      - name: Build windows arm (shared) without python
+        if: ${{ matrix.os == 'windows-11-arm' && matrix.COMPILER == 'msvc' && matrix.LINK == 'shared' }}
+        run: .\b2.exe install --build-dir='tmp' --prefix='.' --without-python variant='release,debug' address-model='64' link=${{matrix.LINK}} -j4 msvc stage
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
