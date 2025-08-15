@@ -35,6 +35,15 @@ jobs:
             COMPILER: gcc
             LINK: 'static+shared'
             ARCH: x86
+          # Windows 11 ARM
+          - os: windows-11-arm
+            COMPILER: msvc
+            LINK: 'static'
+            ARCH: x86
+          - os: windows-11-arm
+            COMPILER: msvc
+            LINK: 'shared'
+            ARCH: x86
           # Windows Server 2025
           - os: windows-2025
             COMPILER: msvc
