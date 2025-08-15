@@ -133,36 +133,36 @@ jobs:
       # Install python
       - name: Setup python 3.8
         uses: actions/setup-python@v5
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.8'
       - name: Add python 3.8 to user-config
         working-directory: boost/tools/build/src
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         shell: bash
         run: |
           VAR="using python : 3.8 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.9
         uses: actions/setup-python@v5
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.9'
       - name: Add python 3.9 to user-config
         working-directory: boost/tools/build/src
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         shell: bash
         run: |
           VAR="using python : 3.9 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.10
         uses: actions/setup-python@v5
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.10'
       - name: Add python 3.10 to user-config
         working-directory: boost/tools/build/src
-        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' }}
+        if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         shell: bash
         run: |
           VAR="using python : 3.10 : $Python_ROOT_DIR ;"
