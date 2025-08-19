@@ -14,7 +14,7 @@ type PlatformVersion =
     | '12'
     | '13';
 type Toolset = 'gcc' | 'msvc' | 'mingw' | 'clang';
-type Arch = 'x86' | 'aarch64';
+type Arch = 'x86' | 'aarch64' | 'arm64';
 type Link = 'static' | 'shared' | 'static+shared';
 
 interface File {
