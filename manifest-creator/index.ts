@@ -81,7 +81,7 @@ async function main(): Promise<void> {
                     const split = d.name
                         .substring(0, d.name.indexOf('.tar.gz'))
                         .split('-');
-
+                    const arm_build = split[4] === 'arm'; 
                     return {
                         filename: d.name,
                         platform: split[2].replace(
@@ -94,7 +94,7 @@ async function main(): Promise<void> {
                             (split.length >= 6 && (split[5] as Link)) ||
                             undefined,
                         arch:
-                            (split.length >= 7 && (split[6] as Arch)) ||
+                            (split.length >= 7 && (split[arm_build ? 7 : 6] as Arch)) ||
                             undefined,
                         download_url: d.browser_download_url,
                     };
