@@ -81,7 +81,6 @@ async function main(): Promise<void> {
                     const split = d.name
                         .substring(0, d.name.indexOf('.tar.gz'))
                         .split('-');
-                    const arm_build = split[4] === 'arm'; 
                     return {
                         filename: d.name,
                         platform: split[2].replace(
