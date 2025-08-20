@@ -14,7 +14,7 @@ type PlatformVersion =
     | '12'
     | '13';
 type Toolset = 'gcc' | 'msvc' | 'mingw' | 'clang';
-type Arch = 'x86' | 'aarch64' | 'arm64';
+type Arch = 'x86' | 'aarch64';
 type Link = 'static' | 'shared' | 'static+shared';
 
 interface File {
@@ -94,7 +94,7 @@ async function main(): Promise<void> {
                             (split.length >= 6 && (split[5] as Link)) ||
                             undefined,
                         arch:
-                            (split.length >= 7 && (split[arm_build ? 7 : 6] as Arch)) ||
+                            (split.length >= 7 && (split[6] as Arch)) ||
                             undefined,
                         download_url: d.browser_download_url,
                     };
