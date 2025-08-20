@@ -39,11 +39,11 @@ jobs:
           - os: windows-11-arm
             COMPILER: msvc
             LINK: 'static'
-            ARCH: arm64
+            ARCH: aarch64
           - os: windows-11-arm
             COMPILER: msvc
             LINK: 'shared'
-            ARCH: arm64
+            ARCH: aarch64
           # Windows Server 2025
           - os: windows-2025
             COMPILER: msvc
