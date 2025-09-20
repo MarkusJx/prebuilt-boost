@@ -2033,18 +2033,18 @@
                 "filename": "boost-1.89.0-windows-11-arm-msvc-shared-aarch64.tar.gz",
                 "platform": "windows",
                 "platform_version": "11",
-                "toolset": "arm",
-                "link": "msvc",
-                "arch": "shared",
+                "toolset": "msvc",
+                "link": "shared",
+                "arch": "aarch64",
                 "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.89.0/boost-1.89.0-windows-11-arm-msvc-shared-aarch64.tar.gz"
             },
             {
                 "filename": "boost-1.89.0-windows-11-arm-msvc-static-aarch64.tar.gz",
                 "platform": "windows",
                 "platform_version": "11",
-                "toolset": "arm",
-                "link": "msvc",
-                "arch": "static",
+                "toolset": "msvc",
+                "link": "static",
+                "arch": "aarch64",
                 "download_url": "https://github.com/MarkusJx/prebuilt-boost/releases/download/1.89.0/boost-1.89.0-windows-11-arm-msvc-static-aarch64.tar.gz"
             },
             {
