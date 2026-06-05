@@ -236,11 +236,11 @@ jobs:
         working-directory: boost
       - name: Build windows arm64 (static)
         if: ${{ matrix.os == 'windows-11-arm' && matrix.COMPILER == 'msvc' && matrix.LINK == 'static' }}
-        run: .\b2.exe install --build-dir=tmp --prefix=. architecture=arm address-model=64 variant=release,debug link=${{ matrix.LINK }} python=3.11,3.12,3.13,3.14 --without-mpi --without-graph_parallel --without-histogram --without-coroutine context-impl=winfib -j4 toolset=msvc pch=off stage
+        run: .\b2.exe install --build-dir=tmp --prefix=. architecture=arm address-model=64 variant=release,debug link=${{ matrix.LINK }} python=3.11,3.12,3.13,3.14 --without-mpi --without-graph_parallel --without-coroutine context-impl=winfib -j4 toolset=msvc pch=off stage
         working-directory: boost
       - name: Build windows arm64 (shared) without python
         if: ${{ matrix.os == 'windows-11-arm' && matrix.COMPILER == 'msvc' && matrix.LINK == 'shared' }}
-        run: .\b2.exe install --build-dir=tmp --prefix=. --without-python architecture=arm address-model=64 variant=release,debug link=${{ matrix.LINK }} --without-mpi --without-graph_parallel --without-histogram --without-coroutine context-impl=winfib -j4 toolset=msvc pch=off stage
+        run: .\b2.exe install --build-dir=tmp --prefix=. --without-python architecture=arm address-model=64 variant=release,debug link=${{ matrix.LINK }} --without-mpi --without-graph_parallel --without-coroutine context-impl=winfib -j4 toolset=msvc pch=off stage
         working-directory: boost
       - name: Build windows mingw
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'mingw' }}
