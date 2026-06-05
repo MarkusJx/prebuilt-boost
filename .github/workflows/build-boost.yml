@@ -79,10 +79,6 @@ jobs:
           #  LINK: 'shared'
           #  ARCH: x86
           # MacOs
-          - os: macos-13
-            COMPILER: clang
-            LINK: 'static+shared'
-            ARCH: x86
           - os: macos-14
             COMPILER: clang
             LINK: 'static+shared'
@@ -115,7 +111,7 @@ jobs:
         
       # Setup cl.exe (windows only)
       - name: Setup VS Dev Environment
-        uses: compnerd/gha-setup-vsdevenv@v6
+        uses: step-security/gha-setup-vsdevenv@v6
         if: ${{ runner.os == 'Windows' && matrix.COMPILER == 'msvc' }}
         
       # Setup MinGW (windows only)
@@ -132,7 +128,7 @@ jobs:
 
       # Install python
       - name: Setup python 3.8
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.8'
@@ -144,7 +140,7 @@ jobs:
           VAR="using python : 3.8 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.9
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.9'
@@ -156,7 +152,7 @@ jobs:
           VAR="using python : 3.9 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.10
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ (runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared') && matrix.os != 'macos-14' && matrix.os != 'macos-15' && matrix.os != 'windows-11-arm' }}
         with:
           python-version: '3.10'
@@ -168,7 +164,7 @@ jobs:
           VAR="using python : 3.10 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.11'
@@ -180,7 +176,7 @@ jobs:
           VAR="using python : 3.11 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.12'
@@ -192,7 +188,7 @@ jobs:
           VAR="using python : 3.12 : $Python_ROOT_DIR ;"
           echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.13
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.13'
@@ -204,7 +200,7 @@ jobs:
             VAR="using python : 3.13 : $Python_ROOT_DIR ;"
             echo ${VAR//\\/\/} >> user-config.jam
       - name: Setup python 3.14
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: ${{ runner.os != 'Windows' || matrix.COMPILER != 'msvc' || matrix.LINK != 'shared' }}
         with:
           python-version: '3.14'
@@ -300,7 +296,7 @@ jobs:
       - name: Compress files
         run: tar -czf boost-${{github.event.inputs.version}}-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}.tar.gz boost
       - name: Upload boost artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           retention-days: 1
           name: boost-${{matrix.os}}-${{matrix.COMPILER}}-${{matrix.LINK}}-${{matrix.ARCH}}
@@ -319,7 +315,7 @@ jobs:
           tag_name: ${{github.event.inputs.version}}
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Download all Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
       - name: Move artifacts
         shell: bash
         run: |
@@ -338,9 +334,9 @@ jobs:
     needs: [upload]
     if: github.event.inputs.release == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
       - name: Install dependencies
         run: npm ci
         working-directory: manifest-creator
